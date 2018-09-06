@@ -1,0 +1,106 @@
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <md-card>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div layout="row" flex>
+                        <div flex="25">
+                            <md-input-container md-no-float class="md-block">
+                                <input ng-model="search" placeholder="search">
+                            </md-input-container>
+                        </div>
+                        <div flex="70">
+                        </div>
+                        <div flex="20">
+                            <md-button class="md-raised themeButton pull-right" ng-click="allDoctorsCtrl.addNew();">    <md-tooltip md-direction="bottom"><b>Add New Doctor</b></md-tooltip>
+                                <md-icon md-font-icon="whiteIcon fa fa-plus"></md-icon> Add Doctor</md-button>
+                        </div>
+                    </div>
+                </div>
+                <md-table-container>
+                    <table md-table width="100%" cellspacing="0" class="table-hover">
+                        <thead md-head md-order="'firstName'" md-on-reorder="sortTable">
+                            <tr md-row>
+                                <th md-column><span>S No.</span></th>
+                                <th md-column md-order-by="firstName"><span>Name</span></th>
+                                <th md-column md-order-by="objDepartment.departmentName" md-desc><span>Department</span></th>
+                                <th md-column md-order-by="mobileNumber"><span>Mobile</span></th>
+                                <th md-column md-order-by="gender"><span>Gender</span></th>
+                                <th md-column md-order-by="active"><span>Status</span></th>
+                                <th md-column><span>Action</span></th>
+                            </tr>
+                        </thead>
+                        <tbody md-body>
+                            <tr md-row ng-disabled="!doctor.active" ng-repeat="doctor in allDoctorsCtrl.listDoctors | filter: search | orderBy: sort | limitTo: query.limit : (query.page -1) * query.limit">
+                                <td md-cell>{{$index+1}}</td>
+                                <td md-cell>{{doctor.firstName}} {{doctor.lastName}}</td>
+                                <td md-cell>{{doctor.objDepartment.departmentName}}</td>
+                                <td md-cell>{{doctor.mobileNumber}}</td>
+                                <td md-cell>{{doctor.gender}}</td>
+                                <td md-cell>
+                                    <div class="customStatusLabel" ng-class="{'activeStatus': doctor.active, 'inActiveStatus': !doctor.active}">{{doctor.active ? 'Active' : 'Inactive'}}</div>
+                                </td>
+                                <td md-cell>
+                                    <md-menu md-position-mode="target-right target">
+                                        <md-button aria-label="menu" class="md-icon-button rowEdit" ng-click="$mdMenu.open()">
+                                            <span md-menu-origin class="glyphicon glyphicon-option-vertical"></span>
+                                        </md-button>
+                                        <md-menu-content width="4" ng-mouseleave1="$mdMenu.close()">
+                                            <md-menu-item ng-repeat="action in allDoctorsCtrl.actionList">
+                                                <md-button ng-click="allDoctorsCtrl.actionClick(action, doctor);">
+                                                    {{action}}
+                                                </md-button>
+                                            </md-menu-item>
+                                        </md-menu-content>
+                                    </md-menu>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </md-table-container>
+                <md-table-pagination md-limit="10" md-limit-options="[10, 20, 50]" md-page="1" md-total="{{allDoctorsCtrl.listDoctors.length}}" md-page-select="true" md-boundary-links="true" md-on-paginate="logPagination"></md-table-pagination>
+            </md-card>
+        </div>
+    </div>
+</section>
+<style type="text/css">
+.label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 100%;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(0, 0, 0, 0.54);
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+}
+
+md-input-container {
+    margin-bottom: 0px;
+    margin-top: 5px;
+}
+
+.customStatusLabel {
+    border-radius: 2px;
+    color: #fff;
+    text-align: center;
+    padding: 2px;
+    font-weight: 600;
+    width: 55px;
+}
+
+.activeStatus {
+    background: #58b558;
+}
+
+.inActiveStatus {
+    background: red;
+}
+
+.md-button.md-icon-button.rowEdit {
+    color: #000 !important;
+    margin-top: 4px;
+}
+</style>
