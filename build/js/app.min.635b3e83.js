@@ -127,9 +127,9 @@
 
 	    angular.module('Home').controller('HomeController', HomeController);
 
-	    HomeController.$inject = ['$scope', '$cookies', '$state', 'pokemons'];
+	    HomeController.$inject = ['$scope', '$state', 'pokemons'];
 
-	    function HomeController($scope, $cookies, $state, pokemons) {
+	    function HomeController($scope, $state, pokemons) {
 	        var homeCtrl = this;
 	        console.log(pokemons);
 	        homeCtrl.pokemons = pokemons.data;
@@ -203,11 +203,12 @@
 	        .service('PokemonService', ['$http', function($http) {
 	            var service = this;
 	            var URL = 'http://pokeapi.co/api/v2/';
-
+	            var uURL = 'api/pokemons.json'
 	            service.getPokemons = function() {
 	                return $http({
 	                    method: "GET",
-	                    url: URL + "pokemon"
+	                    // url: URL + "pokemon"
+	                    url: uURL
 	                });
 	            }
 	        }]);
