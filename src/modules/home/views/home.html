@@ -1,1 +1,33 @@
-<ui-view></ui-view> 
+<section layout="row" flex style="min-height:500px;" ng-cloak>
+    <md-sidenav class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe="4">
+        <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">Pokemon Directory</h1>
+        </md-toolbar>
+        <md-content>
+            <li class="ng-scope menu" md-ink-ripple="#FF0000">
+                <menu-link section="page" class="ng-isolate-scope">
+                	<a class="md-ink-ripple" ui-sref-active="active" ui-sref="home.pokemons">
+					Pokemons
+					</a>
+                </menu-link>
+            </li>
+            <li class="ng-scope menu"  md-ink-ripple="#FF0000">
+                <menu-link section="page" class="ng-isolate-scope">
+                	<a class="md-ink-ripple" ui-sref-active="active" href="" target="_blank">
+					About
+					</a>
+                </menu-link>
+            </li>
+        </md-content>
+    </md-sidenav>
+    <div layout="column" flex>
+        <md-toolbar class="md-whiteframe-glow-z1 site-content-toolbar _md _md-toolbar-transitions" aria-hidden="false">
+            <div class="md-toolbar-tools docs-toolbar-tools" tabindex="-1">
+                Pokemons
+            </div>
+        </md-toolbar>
+        <md-content flex layout-padding>
+            <ui-view></ui-view>
+        </md-content>
+    </div>
+</section>

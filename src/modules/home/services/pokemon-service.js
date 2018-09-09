@@ -4,13 +4,28 @@
     angular.module('Home')
         .service('PokemonService', ['$http', function($http) {
             var service = this;
-            var URL = 'http://pokeapi.co/api/v2/';
-
-            service.getPokemons = function() {
+            
+            service.getPokemons = function(url) {
                 return $http({
                     method: "GET",
-                    url: URL + "pokemon"
+                    url: 'api/pokemons.json'
                 });
             }
+
+            service.getDetails = function(url) {
+                return $http({
+                    method: "GET",
+                    url: 'api/detail.json'
+                });
+            }
+
+
+            service.get = function(url) {
+                return $http({
+                    method: "GET",
+                    url: 'api/evolution.json'
+                });
+            }
+
         }]);
 })();

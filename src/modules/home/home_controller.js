@@ -2,14 +2,8 @@
 
     'use strict';
 
-    angular.module('Home').controller('HomeController', HomeController);
-
-    HomeController.$inject = ['$scope', '$cookies', '$state', 'pokemons'];
-
-    function HomeController($scope, $cookies, $state, pokemons) {
+    angular.module('Home')
+    .controller('HomeController', ['$scope', '$state', function($scope, $state) {
         var homeCtrl = this;
-        console.log(pokemons);
-        homeCtrl.pokemons = pokemons.data;
-        
-    }
+    }]);
 })();

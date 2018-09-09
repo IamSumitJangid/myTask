@@ -1,0 +1,98 @@
+<div aria-label="Pokemon">
+    <form ng-cloak>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>pokemon Deatails</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">X</md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content>
+            <div class="md-dialog-content" style="width: 100%;min-width: 600px;">
+                <div  ng-if="$ctrl.isFetching" class="loading">
+                    <h2>Loading...</h2>
+                </div>
+                <div ng-if="!$ctrl.isFetching">
+                    <h2>#{{$ctrl.pokemonDetail.id}} {{$ctrl.pokemonDetail.name | uppercase}}</h2>
+                    <div flex layout="row">
+                        <div flex="33">
+                            <div flex>
+                                <img ng-src="images/pokemon/{{$ctrl.pokemonDetail.id}}.png" style="max-height: 120px" class="img img-responsive center-block">
+                            </div>
+                            <div flex layout="row" class="type">
+                                <div flex class="monster-type type1">{{$ctrl.pokemonDetail.types[1].type.name | uppercase}}</div>
+                                &nbsp;
+                                <div flex class="monster-type type2">{{$ctrl.pokemonDetail.types[0].type.name | uppercase}}</div>
+                            </div>
+                        </div>
+                        <div flex="66">
+                            <div flex layout="row" ng-repeat="state in $ctrl.pokemonDetail.stats">
+                                <div flex="33" nowrap>
+                                    {{state.stat.name}}
+                                </div>
+                                <div flex="66">
+                                    <div class="progress">
+                                        <div style="width: {{state.base_stat}}%;">
+                                            &nbsp;{{state.base_stat}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <div flex layout="column">
+                        <h4>Profile</h4>
+                        <div flex layout="row">
+                            <div flex="33">
+                                Height
+                            </div>
+                            <div flex="66">
+                                {{$ctrl.pokemonDetail.height/10 | number : 1}} m
+                            </div>
+                        </div>
+                        <div flex layout="row">
+                            <div flex="33">
+                                Weight
+                            </div>
+                            <div flex="66"> {{$ctrl.pokemonDetail.weight / 10 | number : 1}} Kg
+                            </div>
+                        </div>
+                        <div flex layout="row">
+                            <div flex="33">
+                                Abilities </div>
+                            <div flex="66">
+                                <span ng-repeat="abi in $ctrl.pokemonDetail.abilities">{{abi.ability.name}}
+                            <span ng-if="$index != $first || $index != $last-1">,&nbsp;</span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <md-divider></md-divider>
+                    <div flex layout="column">
+                        <h4>Evaluation</h4>
+                        <div flex layout="row">
+                            <div flex="33">
+                                <center>
+                                    <img ng-src="images/pokemon/{{$ctrl.pokemonDetail.id}}.png" style="max-height: 120px" class="img img-responsive center-block"> {{$ctrl.pokemonDetail.evalution.chain.species.name}}
+                                </center>
+                            </div>
+                            <div flex="33">
+                                <center>
+                                    <h3>
+                                    To
+                                </h3> At min level {{$ctrl.pokemonDetail.evalution.chain.evolves_to[0].evolution_details[0].min_level}}
+                                </center>
+                            </div>
+                            <div flex="33">
+                                <center>
+                                    <img ng-src="images/pokemon/{{$ctrl.pokemonDetail.evalution.imageNo}}.png" style="max-height: 120px" class="img img-responsive center-block"> {{$ctrl.pokemonDetail.evalution.chain.evolves_to[0].species.name}}
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</div>

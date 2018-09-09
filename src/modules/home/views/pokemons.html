@@ -1,0 +1,35 @@
+<div layout="column" flex>
+    <div flex layout="row">
+        <div flex>
+            <md-input-container md-no-float class="md-block">
+                <input ng-model="pokemonCtrl.search" type="search" placeholder="search">
+            </md-input-container>
+        </div>
+    </div>
+    <div flex>
+        <md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="6" md-cols-gt-md="8" md-row-height-gt-md="4:1" md-row-height-gt-sm="4:1" md-row-height-gt-xs="2:2" md-row-height="2:2" md-gutter="12px" md-gutter-gt-sm="8px">
+            <md-grid-tile md-ink-ripple="#FF0000" hover-on-mouse ng-random-class md-whiteframe="2" md-rowspan="5" md-colspan="2" md-colspan-sm="2" md-rowspan-sm="2" md-colspan-xs="1" md-rowspan-xs="1" ng-click="pokemonCtrl.showDetails($event, item.url)" ng-repeat="item in pokemonCtrl.pokemonsData.results | filter : pokemonCtrl.search">
+                <img ng-src="images/pokemon/{{item.imageNumber}}.png" style="max-height: 120px" class="img img-responsive">
+                <md-grid-tile-footer>
+                    <h3><b>{{item.name | uppercase}}</b></h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+    <br>
+    <div flex ng-if="pokemonCtrl.pokemonsData.results">
+        <section layout="row">
+            <div flex>
+                <md-button class="md-primary md-hue-1" ng-disabled="!pokemonCtrl.pokemonsData.previous" ng-click="pokemonCtrl.moveToPrevious(pokemonCtrl.pokemonsData.previous)">Previous</md-button>
+            </div>
+            <div flex>
+                <center>
+                    <p class="resultInfo">{{pokemonCtrl.showingReasult}}</p>
+                </center>
+            </div>
+            <div flex>
+                <md-button class="pull-right md-primary md-hue-1" ng-disabled="!pokemonCtrl.pokemonsData.next" ng-click="pokemonCtrl.moveToNext(pokemonCtrl.pokemonsData.next)">Next</md-button>
+            </div>
+        </section>
+    </div>
+</div>
