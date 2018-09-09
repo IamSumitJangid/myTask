@@ -27,4 +27,7 @@ use `gulp build` to make build of yor project.
 
 The project source files are in `src` folder and final build will be stored in `build` folder.
 
+## uint testing
+
+unit testing of a filter defined in my app is done and the screenshots of testing is under `testing/images`
 

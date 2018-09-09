@@ -11,9 +11,9 @@
         });
 
 
-    ctrlDialog.$inject = ['$scope', 'PokemonService', '$mdDialog'];
+    ctrlDialog.$inject = ['$scope', 'PokemonService', '$mdDialog', '$filter'];
 
-    function ctrlDialog($scope, PokemonService, $mdDialog) {
+    function ctrlDialog($scope, PokemonService, $mdDialog, $filter) {
         var $ctrl = this;
 
 
@@ -37,7 +37,7 @@
             .then(response => {
                     console.log(response);
                     $ctrl.pokemonDetail.evalution = response.data;
-                    $ctrl.pokemonDetail.evalution.imageNo = response.data.chain.evolves_to[0].species.url.split('pokemon-species/')[1].replace("\/", "");
+                    $ctrl.pokemonDetail.evalution.imageNo = $filter('getidbyurl')(response.data.chain.evolves_to[0].species.url, 'pokemon-species/');
                 }, error => {
                     console.log(error);
                 });

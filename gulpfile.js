@@ -19,6 +19,7 @@ gulp.task('script', function() {
     return gulp.src([
             './src/app.js',
             './src/http-interceptor.js',
+            './src/directives.js',
             './src/modules/home/home_module.js',
             './src/modules/**/*.js'
         ])

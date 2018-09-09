@@ -8,29 +8,29 @@
             </div>
         </md-toolbar>
         <md-dialog-content>
-            <div class="md-dialog-content" style="width: 100%;min-width: 600px;">
+            <div class="md-dialog-content" style="width: 100%;">
                 <div  ng-if="$ctrl.isFetching" class="loading">
                     <h2>Loading...</h2>
                 </div>
                 <div ng-if="!$ctrl.isFetching">
                     <h2>#{{$ctrl.pokemonDetail.id}} {{$ctrl.pokemonDetail.name | uppercase}}</h2>
-                    <div flex layout="row">
-                        <div flex="33">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-4">
                             <div flex>
                                 <img ng-src="images/pokemon/{{$ctrl.pokemonDetail.id}}.png" style="max-height: 120px" class="img img-responsive center-block">
                             </div>
-                            <div flex layout="row" class="type">
+                            <div flex layout="row" layout-xs="row" class="type">
                                 <div flex class="monster-type type1">{{$ctrl.pokemonDetail.types[1].type.name | uppercase}}</div>
                                 &nbsp;
                                 <div flex class="monster-type type2">{{$ctrl.pokemonDetail.types[0].type.name | uppercase}}</div>
                             </div>
                         </div>
-                        <div flex="66">
-                            <div flex layout="row" ng-repeat="state in $ctrl.pokemonDetail.stats">
-                                <div flex="33" nowrap>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="row" ng-repeat="state in $ctrl.pokemonDetail.stats">
+                                <div class="col-xs-12 col-sm-4" nowrap>
                                     {{state.stat.name}}
                                 </div>
-                                <div flex="66">
+                                <div class="col-xs-12 col-sm-8">
                                     <div class="progress">
                                         <div style="width: {{state.base_stat}}%;">
                                             &nbsp;{{state.base_stat}}
@@ -43,27 +43,28 @@
                     <md-divider></md-divider>
                     <div flex layout="column">
                         <h4>Profile</h4>
-                        <div flex layout="row">
-                            <div flex="33">
-                                Height
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4">
+                                Height :
                             </div>
-                            <div flex="66">
+                            <div class="col-xs-6 col-sm-8">
                                 {{$ctrl.pokemonDetail.height/10 | number : 1}} m
                             </div>
                         </div>
-                        <div flex layout="row">
-                            <div flex="33">
-                                Weight
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4">
+                                Weight :
                             </div>
-                            <div flex="66"> {{$ctrl.pokemonDetail.weight / 10 | number : 1}} Kg
+                            <div class="col-xs-6 col-sm-8"> {{$ctrl.pokemonDetail.weight / 10 | number : 1}} Kg
                             </div>
                         </div>
-                        <div flex layout="row">
-                            <div flex="33">
-                                Abilities </div>
-                            <div flex="66">
-                                <span ng-repeat="abi in $ctrl.pokemonDetail.abilities">{{abi.ability.name}}
-                            <span ng-if="$index != $first || $index != $last-1">,&nbsp;</span>
+                        <div class="row">
+                            <div class="col-xs-6 col-sm-4">
+                                Abilities :</div>
+                            <div class="col-xs-6 col-sm-8">
+                                <span ng-repeat="abi in $ctrl.pokemonDetail.abilities">
+                                    {{abi.ability.name}}
+                                <span style="white-space: pre-line;" ng-if="$index != $first && !$last">, </span>
                                 </span>
                             </div>
                         </div>
@@ -71,20 +72,20 @@
                     <md-divider></md-divider>
                     <div flex layout="column">
                         <h4>Evaluation</h4>
-                        <div flex layout="row">
-                            <div flex="33">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">
                                 <center>
                                     <img ng-src="images/pokemon/{{$ctrl.pokemonDetail.id}}.png" style="max-height: 120px" class="img img-responsive center-block"> {{$ctrl.pokemonDetail.evalution.chain.species.name}}
                                 </center>
                             </div>
-                            <div flex="33">
+                            <div class="col-xs-12 col-sm-4">
                                 <center>
                                     <h3>
                                     To
                                 </h3> At min level {{$ctrl.pokemonDetail.evalution.chain.evolves_to[0].evolution_details[0].min_level}}
                                 </center>
                             </div>
-                            <div flex="33">
+                            <div class="col-xs-12 col-sm-4">
                                 <center>
                                     <img ng-src="images/pokemon/{{$ctrl.pokemonDetail.evalution.imageNo}}.png" style="max-height: 120px" class="img img-responsive center-block"> {{$ctrl.pokemonDetail.evalution.chain.evolves_to[0].species.name}}
                                 </center>

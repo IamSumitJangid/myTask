@@ -80,11 +80,11 @@
 	                    data: { pageTitle: 'Pokemon Directory : Pokemons' }
 	                });
 	        }])
-	        .filter('getidbyurl', [function() {
+	        .filter('getidbyurl', function() {
 	            return function(string, pattern) {
 	                return string.split(pattern)[1].replace("\/", "");
 	            }
-	        }])
+	        });
 
 	})();
 
