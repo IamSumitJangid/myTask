@@ -14,7 +14,7 @@ Run `npm init` to install npm and other dependancies.
 
 ## Gulp
 
-Run `npm install --global gulp-cli` to gulp.
+Run `npm install --global gulp-cli` to integrate gulp.
 
 ## Development server
 
