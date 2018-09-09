@@ -25,7 +25,7 @@
             function getPokemonsForGridView(url) {
                 pokemonCtrl.showLoading = true;
                 $rootScope.loading = true;
-                PokemonService.getPokemons(url)
+                PokemonService.get(url)
                     .then(response => {
                         pokemonCtrl.pokemonsData = response.data;
                         settingImageUrl();

@@ -20,7 +20,7 @@
         $ctrl.$onInit = function() {
             console.log($ctrl);
             $ctrl.isFetching = true;
-            PokemonService.getDetails($ctrl.url)
+            PokemonService.get($ctrl.url)
                 .then(response => {
                     console.log(response);
                     $ctrl.pokemonDetail= response.data;
